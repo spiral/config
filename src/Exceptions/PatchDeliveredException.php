@@ -6,9 +6,9 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Configurator;
+namespace Spiral\Configurator\Exceptions;
 
-class Configurator
+class PatchDeliveredException extends PatchException
 {
 
 }

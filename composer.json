@@ -1,7 +1,7 @@
 {
   "name": "spiral/configurator",
   "type": "library",
-  "description": "InjectorConfig loader and configuration mutator",
+  "description": "Config injector and configuration mutator",
   "license": "MIT",
   "authors": [
     {
