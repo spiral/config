@@ -1,5 +1,5 @@
 {
-  "name": "spiral/configurator",
+  "name": "spiral/config",
   "type": "library",
   "description": "Config injector and configuration mutator",
   "license": "MIT",
