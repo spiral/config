@@ -27,6 +27,8 @@ class InjectionTest extends BaseTest
             ],
             $config->toArray()
         );
+
+        $this->assertSame($config, $this->container->get(TestConfig::class));
     }
 }
 
