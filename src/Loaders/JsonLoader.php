@@ -20,14 +20,10 @@ class JsonLoader implements DataLoaderInterface
         $content = file_get_contents($filename);
         $data = json_decode($content, true);
 
-        if (is_array($data)) {
-            return $data;
+        if (is_null($data)) {
+            throw new LoaderException(json_last_error_msg(), json_last_error());
         }
 
-        if (!is_null($data)) {
-            throw new LoaderException("Invalid config declaration for `{$section}`, array is expected.");
-        }
-
-        throw new LoaderException(json_last_error_msg(), json_last_error());
+        return $data;
     }
 }

@@ -16,15 +16,22 @@ use Spiral\Core\Container;
 
 abstract class BaseTest extends TestCase
 {
+    /**
+     * @var Container
+     */
+    protected $container;
+
+    public function setUp()
+    {
+        $this->container = new Container();
+    }
+
     protected function getFactory(string $directory = null, bool $strict = true): ConfigFactory
     {
         if (is_null($directory)) {
             $directory = __DIR__ . '/fixtures';
         }
 
-        return new ConfigFactory(
-            new DirectoryLoader($directory, new Container()),
-            $strict
-        );
+        return new ConfigFactory(new DirectoryLoader($directory, $this->container), $strict);
     }
 }
