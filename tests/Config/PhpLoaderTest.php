@@ -13,7 +13,6 @@ class PhpLoaderTest extends BaseTest
     public function testGetConfig()
     {
         $cf = $this->getFactory();
-        $config = $cf->getConfig('test');
 
         $this->assertEquals(
             [
