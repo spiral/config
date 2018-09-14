@@ -6,9 +6,9 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Patches;
+namespace Spiral\Config\Exceptions;
 
-class AddPatch
+class DotNotFoundException extends \RuntimeException
 {
 
 }

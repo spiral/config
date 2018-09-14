@@ -9,6 +9,7 @@
 namespace Spiral\Config;
 
 use Spiral\Config\Exceptions\PatchDeliveredException;
+use Spiral\Config\Exceptions\PatchException;
 use Spiral\Core\ConfiguratorInterface;
 use Spiral\Core\Container\SingletonInterface;
 
@@ -52,7 +53,11 @@ class ConfigFactory implements ConfiguratorInterface, ModifierInterface, Singlet
 
         $data = $this->getConfig($section);
 
-        return $this->data[$section] = $patch->patch($data);
+        try {
+            return $this->data[$section] = $patch->patch($data);
+        } catch (PatchException $e) {
+            throw new PatchException("Unable to modify config `{$section}`.", $e->getCode(), $e);
+        }
     }
 
     /**

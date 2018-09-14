@@ -54,7 +54,11 @@ class DirectoryLoader implements LoaderInterface
                 continue;
             }
 
-            return $this->getLoader($extension)->loadFile($section, $filename);
+            try {
+                return $this->getLoader($extension)->loadFile($section, $filename);
+            } catch (LoaderException $e) {
+                throw new LoaderException("Unable to load config `{$section}`.", $e->getCode(), $e);
+            }
         }
 
         throw new LoaderException("Unable to load config `{$section}`.");
