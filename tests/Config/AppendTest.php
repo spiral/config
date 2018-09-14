@@ -8,9 +8,9 @@
 
 namespace Spiral\Config\Tests;
 
-use Spiral\Config\Patches\PushPatch;
+use Spiral\Config\Patches\AppendPatch;
 
-class PushPatchTest extends BaseTest
+class AppendTest extends BaseTest
 {
     public function testPushPatch()
     {
@@ -18,7 +18,7 @@ class PushPatchTest extends BaseTest
         $config = $cf->getConfig('scope');
         $this->assertEquals(['value' => 'value!'], $config);
 
-        $cf->modify('scope', new PushPatch('.', 'other', ['a' => 'b']));
+        $cf->modify('scope', new AppendPatch('.', 'other', ['a' => 'b']));
 
         $config = $cf->getConfig('scope');
         $this->assertSame([
@@ -29,7 +29,7 @@ class PushPatchTest extends BaseTest
         ], $config);
 
 
-        $cf->modify('scope', new PushPatch('other', null, 'c'));
+        $cf->modify('scope', new AppendPatch('other', null, 'c'));
 
         $config = $cf->getConfig('scope');
         $this->assertSame([
@@ -50,6 +50,6 @@ class PushPatchTest extends BaseTest
         $config = $cf->getConfig('scope');
         $this->assertEquals(['value' => 'value!'], $config);
 
-        $cf->modify('scope', new PushPatch('other', 'other', ['a' => 'b']));
+        $cf->modify('scope', new AppendPatch('other', 'other', ['a' => 'b']));
     }
 }

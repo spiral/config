@@ -13,7 +13,7 @@ use Spiral\Config\Exceptions\PatchException;
 use Spiral\Config\Patches\Traits\DotTrait;
 use Spiral\Config\PatchInterface;
 
-class PushPatch implements PatchInterface
+class AppendPatch implements PatchInterface
 {
     use DotTrait;
 

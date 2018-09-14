@@ -8,6 +8,7 @@
 
 namespace Spiral\Config\Tests;
 
+use Spiral\Config\Patches\AppendPatch;
 use Spiral\Core\ConfiguratorInterface;
 use Spiral\Core\InjectableConfig;
 
@@ -29,6 +30,56 @@ class InjectionTest extends BaseTest
         );
 
         $this->assertSame($config, $this->container->get(TestConfig::class));
+    }
+
+    /**
+     * @expectedException \Spiral\Config\Exceptions\PatchDeliveredException
+     */
+    public function testModifyAfterInjection()
+    {
+        $cf = $this->getFactory();
+        $this->container->bind(ConfiguratorInterface::class, $cf);
+
+        $config = $this->container->get(TestConfig::class);
+
+        $this->assertEquals(
+            [
+                'id'       => 'hello world',
+                'autowire' => new \Spiral\Core\Container\Autowire('something')
+            ],
+            $config->toArray()
+        );
+
+        $cf->modify('test', new AppendPatch(".", null, "value"));
+    }
+
+    public function testNonStrict()
+    {
+        $cf = $this->getFactory(null, false);
+        $this->container->bind(ConfiguratorInterface::class, $cf);
+
+        $config = $this->container->get(TestConfig::class);
+
+        $this->assertEquals(
+            [
+                'id'       => 'hello world',
+                'autowire' => new \Spiral\Core\Container\Autowire('something')
+            ],
+            $config->toArray()
+        );
+
+        $cf->modify('test', new AppendPatch(".", 'key', "value"));
+
+        $config = $this->container->get(TestConfig::class);
+
+        $this->assertEquals(
+            [
+                'id'       => 'hello world',
+                'autowire' => new \Spiral\Core\Container\Autowire('something'),
+                'key'      => 'value'
+            ],
+            $config->toArray()
+        );
     }
 }
 

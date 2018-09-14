@@ -8,7 +8,7 @@
 
 namespace Spiral\Config\Patches;
 
-class RisePatch
+class PrependPatch
 {
 
 }

@@ -45,10 +45,14 @@ class ConfigFactory implements ConfiguratorInterface, ModifierInterface, Singlet
      */
     public function modify(string $section, PatchInterface $patch): array
     {
-        if ($this->strict && isset($this->instances[$section])) {
-            throw new PatchDeliveredException(
-                "Unable to patch config `{$section}`, config object has already been delivered."
-            );
+        if (isset($this->instances[$section])) {
+            if ($this->strict) {
+                throw new PatchDeliveredException(
+                    "Unable to patch config `{$section}`, config object has already been delivered."
+                );
+            }
+
+            unset($this->instances[$section]);
         }
 
         $data = $this->getConfig($section);
@@ -77,13 +81,12 @@ class ConfigFactory implements ConfiguratorInterface, ModifierInterface, Singlet
      */
     public function createInjection(\ReflectionClass $class, string $context = null)
     {
-        if (isset($this->instances[$class->getName()])) {
-            return $this->instances[$class->getName()];
+        $config = $class->getConstant('CONFIG');
+        if (isset($this->instances[$config])) {
+            return $this->instances[$config];
         }
 
-        return $this->instances[$class->getName()] = $class->newInstance(
-            $this->getConfig($class->getConstant('CONFIG'))
-        );
+        return $this->instances[$config] = $class->newInstance($this->getConfig($config));
     }
 
     /**
