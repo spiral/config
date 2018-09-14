@@ -6,7 +6,7 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Configurator;
+namespace Spiral\Config;
 
 /**
  * Provides ability to modify configs values in runtime.

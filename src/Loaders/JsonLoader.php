@@ -6,11 +6,28 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Configurator\Loaders;
+namespace Spiral\Config\Loaders;
 
-use Spiral\Configurator\LoaderInterface;
+use Spiral\Config\Exceptions\LoaderException;
 
-class JsonLoader implements LoaderInterface
+class JsonLoader implements DataLoaderInterface
 {
+    /**
+     * @inheritdoc
+     */
+    public function loadFile(string $section, string $filename): array
+    {
+        $content = file_get_contents($filename);
+        $data = json_decode($content, true);
 
+        if (is_array($data)) {
+            return $data;
+        }
+
+        if (!is_null($data)) {
+            throw new LoaderException("Invalid config declaration for `{$section}`, array is expected.");
+        }
+
+        throw new LoaderException(json_last_error_msg(), json_last_error());
+    }
 }

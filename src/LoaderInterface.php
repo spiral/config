@@ -6,7 +6,7 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Configurator;
+namespace Spiral\Config;
 
 interface LoaderInterface
 {
@@ -15,7 +15,7 @@ interface LoaderInterface
      *
      * @return array
      *
-     * @throws \Spiral\Configurator\Exceptions\LoaderException
+     * @throws \Spiral\Config\Exceptions\LoaderException
      */
     public function loadData(string $section): array;
 }

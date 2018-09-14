@@ -6,7 +6,7 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Configurator\Exceptions;
+namespace Spiral\Config\Exceptions;
 
 use Spiral\Core\Exceptions\ConfiguratorException;
 

@@ -6,9 +6,9 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Configurator;
+namespace Spiral\Config;
 
-use Spiral\Configurator\Exceptions\PatchDeliveredException;
+use Spiral\Config\Exceptions\PatchDeliveredException;
 use Spiral\Core\ConfiguratorInterface;
 use Spiral\Core\Container\SingletonInterface;
 

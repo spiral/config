@@ -6,7 +6,7 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Configurator;
+namespace Spiral\Config;
 
 interface PatchInterface
 {
@@ -18,7 +18,7 @@ interface PatchInterface
      *
      * @return array
      *
-     * @throws \Spiral\Configurator\Exceptions\PatchException
+     * @throws \Spiral\Config\Exceptions\PatchException
      */
     public function patch(array $config): array;
 }

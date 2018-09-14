@@ -6,9 +6,9 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Exceptions;
+namespace Spiral\Config\Patches\Traits;
 
-class PatchDeliveredException extends PatchException
+trait DotTrait
 {
 
 }

@@ -19,12 +19,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Spiral\\Configurator\\": "src/"
+      "Spiral\\Config\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Spiral\\Configurator\\Tests\\": "tests/Configurator/"
+      "Spiral\\Config\\Tests\\": "tests/Config/"
     }
   }
 }

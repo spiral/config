@@ -10,7 +10,7 @@ namespace Spiral\Config\Exceptions;
 
 use Spiral\Core\Exceptions\ConfiguratorException;
 
-class LoaderException extends ConfiguratorException
+class InvalidArgumentException extends ConfiguratorException
 {
 
 }
