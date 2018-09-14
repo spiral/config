@@ -20,7 +20,7 @@ class PhpLoaderTest extends BaseTest
                 'id'       => 'hello world',
                 'autowire' => new \Spiral\Core\Container\Autowire('something')
             ],
-            $config
+            $cf->getConfig('test')
         );
     }
 
@@ -53,13 +53,31 @@ class PhpLoaderTest extends BaseTest
             ],
             $config
         );
+
+        $this->container->bind(Value::class, new Value("other!"));
+
+        $config = $cf->getConfig('scope2');
+
+        $this->assertEquals(
+            [
+                'value' => 'other!'
+            ],
+            $config
+        );
     }
 }
 
 class Value
 {
+    private $value;
+
+    public function __construct(string $value = "value!")
+    {
+        $this->value = $value;
+    }
+
     public function getValue()
     {
-        return "value!";
+        return $this->value;
     }
 }

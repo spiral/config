@@ -34,4 +34,12 @@ class ConfigFactoryTest extends BaseTest
         $cf = $this->getFactory();
         $cf->getConfig('other');
     }
+
+    /**
+     * @expectedException \Spiral\Config\Exceptions\InvalidArgumentException
+     */
+    public function testDirectoryError()
+    {
+        $cf = $this->getFactory("other");
+    }
 }
