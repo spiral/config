@@ -51,7 +51,6 @@ class AppendPatch implements PatchInterface
             } else {
                 $target[] = $this->value;
             }
-
         } catch (DotNotFoundException $e) {
             throw new PatchException($e->getMessage(), $e->getCode(), $e);
         }

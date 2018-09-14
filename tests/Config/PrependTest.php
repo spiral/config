@@ -8,9 +8,9 @@
 
 namespace Spiral\Config\Tests;
 
-use Spiral\Config\Patches\AppendPatch;
+use Spiral\Config\Patches\PrependPatch;
 
-class AppendTest extends BaseTest
+class PrependTest extends BaseTest
 {
     public function testPushPatch()
     {
@@ -18,21 +18,21 @@ class AppendTest extends BaseTest
 
         $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new AppendPatch('.', 'other', ['a' => 'b']));
+        $cf->modify('scope', new PrependPatch('.', 'other', ['a' => 'b']));
 
         $this->assertSame([
+            'other' => ['a' => 'b'],
             'value' => 'value!',
-            'other' => ['a' => 'b']
         ], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new AppendPatch('other.', null, 'c'));
+        $cf->modify('scope', new PrependPatch('other.', null, 'c'));
 
         $this->assertSame([
-            'value' => 'value!',
             'other' => [
+                'c',
                 'a' => 'b',
-                'c'
-            ]
+            ],
+            'value' => 'value!',
         ], $cf->getConfig('scope'));
     }
 
@@ -45,6 +45,6 @@ class AppendTest extends BaseTest
         $config = $cf->getConfig('scope');
         $this->assertEquals(['value' => 'value!'], $config);
 
-        $cf->modify('scope', new AppendPatch('other', 'other', ['a' => 'b']));
+        $cf->modify('scope', new PrependPatch('other', 'other', ['a' => 'b']));
     }
 }
