@@ -61,7 +61,7 @@ class DeleteTest extends BaseTest
         $cf = $this->getFactory();
         $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new DeletePatch('.', 'other'));
+        $cf->modify('scope', new DeletePatch('something.', 'other'));
         $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
     }
 }
