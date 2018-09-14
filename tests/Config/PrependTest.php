@@ -12,7 +12,7 @@ use Spiral\Config\Patches\PrependPatch;
 
 class PrependTest extends BaseTest
 {
-    public function testPushPatch()
+    public function testPatch()
     {
         $cf = $this->getFactory();
 

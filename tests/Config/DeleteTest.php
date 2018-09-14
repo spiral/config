@@ -9,7 +9,59 @@
 namespace Spiral\Config\Tests;
 
 
-class DeleteTest
-{
+use Spiral\Config\Patches\AppendPatch;
+use Spiral\Config\Patches\DeletePatch;
 
+class DeleteTest extends BaseTest
+{
+    public function testPatch()
+    {
+        $cf = $this->getFactory();
+
+        $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
+
+        $cf->modify('scope', new AppendPatch('.', 'other', ['a' => 'b']));
+        $cf->modify('scope', new DeletePatch('.', 'value'));
+
+        $this->assertSame([
+            'other' => ['a' => 'b']
+        ], $cf->getConfig('scope'));
+
+        $cf->modify('scope', new AppendPatch('.', null, 'c'));
+
+        $this->assertSame([
+            'other' => ['a' => 'b'],
+            'c'
+        ], $cf->getConfig('scope'));
+
+        $cf->modify('scope', new DeletePatch('.', null, 'c'));
+
+        $this->assertSame([
+            'other' => ['a' => 'b']
+        ], $cf->getConfig('scope'));
+
+        $cf->modify('scope', new DeletePatch('other', 'a'));
+        $this->assertSame([
+            'other' => []
+        ], $cf->getConfig('scope'));
+
+        $cf->modify('scope', new AppendPatch('.', 'other', ['a' => 'b']));
+        $this->assertSame([
+            'other' => ['a' => 'b']
+        ], $cf->getConfig('scope'));
+
+        $cf->modify('scope', new DeletePatch('other', null, 'b'));
+        $this->assertSame([
+            'other' => []
+        ], $cf->getConfig('scope'));
+    }
+
+    public function testException()
+    {
+        $cf = $this->getFactory();
+        $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
+
+        $cf->modify('scope', new DeletePatch('.', 'other'));
+        $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
+    }
 }
