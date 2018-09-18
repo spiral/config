@@ -8,7 +8,7 @@
 
 namespace Spiral\Config\Tests;
 
-use Spiral\Config\Patches\AppendPatch;
+use Spiral\Config\Patch\AppendPatch;
 use Spiral\Core\ConfiguratorInterface;
 use Spiral\Core\InjectableConfig;
 
@@ -33,7 +33,7 @@ class InjectionTest extends BaseTest
     }
 
     /**
-     * @expectedException \Spiral\Config\Exceptions\PatchDeliveredException
+     * @expectedException \Spiral\Config\Exception\PatchDeliveredException
      */
     public function testModifyAfterInjection()
     {

@@ -6,9 +6,9 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Loaders;
+namespace Spiral\Config\Loader;
 
-use Spiral\Config\Exceptions\LoaderException;
+use Spiral\Config\Exception\LoaderException;
 
 interface DataLoaderInterface
 {

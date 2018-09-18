@@ -6,9 +6,9 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Exceptions;
+namespace Spiral\Config\Exception;
 
-class DotNotFoundException extends \RuntimeException
+class PatchDeliveredException extends PatchException
 {
 
 }

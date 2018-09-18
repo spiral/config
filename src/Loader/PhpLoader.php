@@ -6,10 +6,10 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Loaders;
+namespace Spiral\Config\Loader;
 
 use Psr\Container\ContainerInterface;
-use Spiral\Config\Exceptions\LoaderException;
+use Spiral\Config\Exception\LoaderException;
 use Spiral\Core\ContainerScope;
 
 /**

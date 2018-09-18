@@ -27,7 +27,7 @@ class ConfigFactoryTest extends BaseTest
     }
 
     /**
-     * @expectedException \Spiral\Config\Exceptions\LoaderException
+     * @expectedException \Spiral\Config\Exception\LoaderException
      */
     public function testConfigError()
     {
@@ -36,7 +36,7 @@ class ConfigFactoryTest extends BaseTest
     }
 
     /**
-     * @expectedException \Spiral\Config\Exceptions\InvalidArgumentException
+     * @expectedException \Spiral\Config\Exception\InvalidArgumentException
      */
     public function testDirectoryError()
     {

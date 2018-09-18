@@ -9,8 +9,8 @@
 namespace Spiral\Config\Tests;
 
 
-use Spiral\Config\Patches\AppendPatch;
-use Spiral\Config\Patches\DeletePatch;
+use Spiral\Config\Patch\AppendPatch;
+use Spiral\Config\Patch\DeletePatch;
 
 class DeleteTest extends BaseTest
 {

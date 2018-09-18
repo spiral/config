@@ -24,7 +24,7 @@ class PhpLoaderTest extends BaseTest
     }
 
     /**
-     * @expectedException \Spiral\Config\Exceptions\LoaderException
+     * @expectedException \Spiral\Config\Exception\LoaderException
      */
     public function testEmpty()
     {
@@ -33,7 +33,7 @@ class PhpLoaderTest extends BaseTest
     }
 
     /**
-     * @expectedException \Spiral\Config\Exceptions\LoaderException
+     * @expectedException \Spiral\Config\Exception\LoaderException
      */
     public function testBroken()
     {

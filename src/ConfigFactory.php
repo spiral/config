@@ -8,8 +8,8 @@
 
 namespace Spiral\Config;
 
-use Spiral\Config\Exceptions\PatchDeliveredException;
-use Spiral\Config\Exceptions\PatchException;
+use Spiral\Config\Exception\PatchDeliveredException;
+use Spiral\Config\Exception\PatchException;
 use Spiral\Core\ConfiguratorInterface;
 use Spiral\Core\Container\SingletonInterface;
 

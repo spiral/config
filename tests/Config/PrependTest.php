@@ -8,7 +8,7 @@
 
 namespace Spiral\Config\Tests;
 
-use Spiral\Config\Patches\PrependPatch;
+use Spiral\Config\Patch\PrependPatch;
 
 class PrependTest extends BaseTest
 {
@@ -37,7 +37,7 @@ class PrependTest extends BaseTest
     }
 
     /**
-     * @expectedException \Spiral\Config\Exceptions\PatchException
+     * @expectedException \Spiral\Config\Exception\PatchException
      */
     public function testException()
     {

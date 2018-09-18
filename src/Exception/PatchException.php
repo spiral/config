@@ -6,9 +6,9 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Exceptions;
+namespace Spiral\Config\Exception;
 
-use Spiral\Core\Exceptions\ConfiguratorException;
+use Spiral\Core\Exception\ConfiguratorException;
 
 class PatchException extends ConfiguratorException
 {

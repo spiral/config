@@ -15,7 +15,7 @@ interface LoaderInterface
      *
      * @return array
      *
-     * @throws \Spiral\Config\Exceptions\LoaderException
+     * @throws \Spiral\Config\Exception\LoaderException
      */
     public function loadData(string $section): array;
 }

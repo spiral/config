@@ -11,7 +11,7 @@ namespace Spiral\Config\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Spiral\Config\ConfigFactory;
-use Spiral\Config\Loaders\DirectoryLoader;
+use Spiral\Config\Loader\DirectoryLoader;
 use Spiral\Core\Container;
 
 abstract class BaseTest extends TestCase

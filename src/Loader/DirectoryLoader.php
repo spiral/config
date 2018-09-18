@@ -6,10 +6,10 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Loaders;
+namespace Spiral\Config\Loader;
 
-use Spiral\Config\Exceptions\InvalidArgumentException;
-use Spiral\Config\Exceptions\LoaderException;
+use Spiral\Config\Exception\InvalidArgumentException;
+use Spiral\Config\Exception\LoaderException;
 use Spiral\Config\LoaderInterface;
 use Spiral\Core\FactoryInterface;
 

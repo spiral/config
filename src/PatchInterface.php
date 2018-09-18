@@ -18,7 +18,7 @@ interface PatchInterface
      *
      * @return array
      *
-     * @throws \Spiral\Config\Exceptions\PatchException
+     * @throws \Spiral\Config\Exception\PatchException
      */
     public function patch(array $config): array;
 }

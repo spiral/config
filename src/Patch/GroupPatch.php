@@ -6,7 +6,7 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Patches;
+namespace Spiral\Config\Patch;
 
 use Spiral\Config\PatchInterface;
 

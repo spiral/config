@@ -6,9 +6,9 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Patches\Traits;
+namespace Spiral\Config\Patch\Traits;
 
-use Spiral\Config\Exceptions\DotNotFoundException;
+use Spiral\Config\Exception\DotNotFoundException;
 
 trait DotTrait
 {

@@ -6,11 +6,11 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Patches;
+namespace Spiral\Config\Patch;
 
-use Spiral\Config\Exceptions\DotNotFoundException;
-use Spiral\Config\Exceptions\PatchException;
-use Spiral\Config\Patches\Traits\DotTrait;
+use Spiral\Config\Exception\DotNotFoundException;
+use Spiral\Config\Exception\PatchException;
+use Spiral\Config\Patch\Traits\DotTrait;
 use Spiral\Config\PatchInterface;
 
 class AppendPatch implements PatchInterface

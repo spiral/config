@@ -8,10 +8,10 @@
 
 namespace Spiral\Config\Tests;
 
-use Spiral\Config\Patches\AppendPatch;
-use Spiral\Config\Patches\DeletePatch;
-use Spiral\Config\Patches\GroupPatch;
-use Spiral\Config\Patches\PrependPatch;
+use Spiral\Config\Patch\AppendPatch;
+use Spiral\Config\Patch\DeletePatch;
+use Spiral\Config\Patch\GroupPatch;
+use Spiral\Config\Patch\PrependPatch;
 
 class GroupTest extends BaseTest
 {

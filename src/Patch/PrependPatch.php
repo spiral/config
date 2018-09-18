@@ -6,13 +6,14 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Patches;
+namespace Spiral\Config\Patch;
 
-use Spiral\Config\Exceptions\DotNotFoundException;
-use Spiral\Config\Patches\Traits\DotTrait;
+use Spiral\Config\Exception\DotNotFoundException;
+use Spiral\Config\Exception\PatchException;
+use Spiral\Config\Patch\Traits\DotTrait;
 use Spiral\Config\PatchInterface;
 
-class DeletePatch implements PatchInterface
+class PrependPatch implements PatchInterface
 {
     use DotTrait;
 
@@ -30,7 +31,7 @@ class DeletePatch implements PatchInterface
      * @param null|string $key
      * @param mixed       $value
      */
-    public function __construct(string $position, ?string $key, $value = null)
+    public function __construct(string $position, ?string $key, $value)
     {
         $this->position = $position === '.' ? '' : $position;
         $this->key = $key;
@@ -46,17 +47,12 @@ class DeletePatch implements PatchInterface
             $target = &$this->dotGet($config, $this->position);
 
             if ($this->key !== null) {
-                unset($target[$this->key]);
+                $target = array_merge([$this->key => $this->value], $target);
             } else {
-                foreach ($target as $key => $value) {
-                    if ($value === $this->value) {
-                        unset($target[$key]);
-                        break;
-                    }
-                }
+                array_unshift($target, $this->value);
             }
         } catch (DotNotFoundException $e) {
-            // doing nothing when section not found
+            throw new PatchException($e->getMessage(), $e->getCode(), $e);
         }
 
         return $config;
