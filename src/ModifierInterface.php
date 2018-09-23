@@ -22,7 +22,7 @@ interface ModifierInterface
      *
      * @return array
      *
-     * @throws \Spiral\Core\Exceptions\ConfiguratorException
+     * @throws \Spiral\Core\Exception\ConfiguratorException
      */
     public function modify(string $section, PatchInterface $patch): array;
 }
