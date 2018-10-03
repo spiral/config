@@ -106,7 +106,6 @@ class ConfigFactory implements ConfiguratorInterface, SingletonInterface
                 $data = $this->loader->load($section);
             }
 
-            // replace recursive?
             $data = array_merge($this->defaults[$section], $data);
         } else {
             $data = $this->loader->load($section);
