@@ -133,6 +133,7 @@ class ConfigFactory implements ConfiguratorInterface, SingletonInterface
     public function __clone()
     {
         $this->data = [];
+        $this->defaults = [];
         $this->instances = [];
     }
 }
