@@ -26,6 +26,17 @@ class ConfigFactoryTest extends BaseTest
         $this->assertSame($config, $cf->getConfig('test'));
     }
 
+    public function testExists()
+    {
+        $cf = $this->getFactory();
+        $this->assertTrue($cf->exists('test'));
+        $this->assertFalse($cf->exists('magic'));
+
+        $cf->setDefaults('magic', ['key' => 'value']);
+
+        $this->assertTrue($cf->exists('magic'));
+    }
+
     /**
      * @expectedException \Spiral\Config\Exception\LoaderException
      */
