@@ -49,7 +49,7 @@ interface ConfiguratorInterface extends \Spiral\Core\ConfiguratorInterface
      * @throws \Spiral\Core\Exception\ConfiguratorException
      * @throws \Spiral\Config\Exception\ConfigDeliveredException
      */
-    public function setDefault(string $section, array $data);
+    public function setDefaults(string $section, array $data);
 
     /**
      * Modifies selected config section. Must throw `PatchDeliveredException` if modification is

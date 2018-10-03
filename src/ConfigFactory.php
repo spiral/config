@@ -54,7 +54,7 @@ class ConfigFactory implements ConfiguratorInterface, SingletonInterface
     /**
      * @inheritdoc
      */
-    public function setDefault(string $section, array $data)
+    public function setDefaults(string $section, array $data)
     {
         if (isset($this->defaults[$section])) {
             throw new ConfiguratorException("Unable to set default config `{$section}` more than once.");

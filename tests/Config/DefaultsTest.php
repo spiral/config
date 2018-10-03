@@ -13,7 +13,7 @@ class DefaultsTest extends BaseTest
     public function testGetNonExistedByDefaultConfig()
     {
         $cf = $this->getFactory();
-        $cf->setDefault("magic", ['key' => 'value']);
+        $cf->setDefaults("magic", ['key' => 'value']);
 
         $config = $cf->getConfig('magic');
 
@@ -31,8 +31,8 @@ class DefaultsTest extends BaseTest
     public function testDefaultsTwice()
     {
         $cf = $this->getFactory();
-        $cf->setDefault("magic", ['key' => 'value']);
-        $cf->setDefault("magic", ['key' => 'value']);
+        $cf->setDefaults("magic", ['key' => 'value']);
+        $cf->setDefaults("magic", ['key' => 'value']);
 
     }
 
@@ -44,14 +44,14 @@ class DefaultsTest extends BaseTest
         $cf = $this->getFactory();
 
         $cf->getConfig('test');
-        $cf->setDefault("test", ['key' => 'value']);
+        $cf->setDefaults("test", ['key' => 'value']);
     }
 
     public function testOverwrite()
     {
         $cf = $this->getFactory();
 
-        $cf->setDefault("test", [
+        $cf->setDefaults("test", [
             'key' => 'value'
         ]);
 
