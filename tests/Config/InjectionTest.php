@@ -33,7 +33,7 @@ class InjectionTest extends BaseTest
     }
 
     /**
-     * @expectedException \Spiral\Config\Exception\PatchDeliveredException
+     * @expectedException \Spiral\Config\Exception\ConfigDeliveredException
      */
     public function testModifyAfterInjection()
     {

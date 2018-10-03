@@ -26,7 +26,7 @@ class DirectoryLoader implements LoaderInterface
     /** @var FactoryInterface */
     private $factory;
 
-    /** @var DataLoaderInterface[] */
+    /** @var FileLoaderInterface[] */
     private $loaders = [];
 
     /**
@@ -46,7 +46,22 @@ class DirectoryLoader implements LoaderInterface
     /**
      * @inheritdoc
      */
-    public function loadData(string $section): array
+    public function has(string $section): bool
+    {
+        foreach (static::LOADERS as $extension => $class) {
+            $filename = sprintf("%s/%s.%s", $this->directory, $section, $extension);
+            if (file_exists($filename)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function load(string $section): array
     {
         foreach (static::LOADERS as $extension => $class) {
             $filename = sprintf("%s/%s.%s", $this->directory, $section, $extension);
@@ -66,9 +81,9 @@ class DirectoryLoader implements LoaderInterface
 
     /**
      * @param string $extension
-     * @return DataLoaderInterface
+     * @return FileLoaderInterface
      */
-    private function getLoader(string $extension): DataLoaderInterface
+    private function getLoader(string $extension): FileLoaderInterface
     {
         if (isset($this->loaders[$extension])) {
             return $this->loaders[$extension];

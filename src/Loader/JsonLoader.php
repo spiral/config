@@ -10,7 +10,7 @@ namespace Spiral\Config\Loader;
 
 use Spiral\Config\Exception\LoaderException;
 
-class JsonLoader implements DataLoaderInterface
+class JsonLoader implements FileLoaderInterface
 {
     /**
      * @inheritdoc
