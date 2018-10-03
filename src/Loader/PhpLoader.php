@@ -15,7 +15,7 @@ use Spiral\Core\ContainerScope;
 /**
  * Loads PHP files inside container scope.
  */
-class PhpLoader implements DataLoaderInterface
+class PhpLoader implements FileLoaderInterface
 {
     /** @var ContainerInterface */
     private $container;

@@ -8,7 +8,7 @@
 
 namespace Spiral\Config\Exception;
 
-class PatchDeliveredException extends PatchException
+class ConfigDeliveredException extends PatchException
 {
 
 }

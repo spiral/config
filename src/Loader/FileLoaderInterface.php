@@ -10,7 +10,7 @@ namespace Spiral\Config\Loader;
 
 use Spiral\Config\Exception\LoaderException;
 
-interface DataLoaderInterface
+interface FileLoaderInterface
 {
     /**
      * Load file content.

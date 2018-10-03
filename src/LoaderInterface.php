@@ -11,11 +11,18 @@ namespace Spiral\Config;
 interface LoaderInterface
 {
     /**
-     * @param string $section
+     * Return true if config section exists.
      *
+     * @param string $section
+     * @return bool
+     */
+    public function has(string $section): bool;
+
+    /**
+     * @param string $section
      * @return array
      *
      * @throws \Spiral\Config\Exception\LoaderException
      */
-    public function loadData(string $section): array;
+    public function load(string $section): array;
 }

@@ -8,15 +8,15 @@
 
 namespace Spiral\Config;
 
-use Spiral\Config\Exception\PatchDeliveredException;
+use Spiral\Config\Exception\ConfigDeliveredException;
 use Spiral\Config\Exception\PatchException;
-use Spiral\Core\ConfiguratorInterface;
 use Spiral\Core\Container\SingletonInterface;
+use Spiral\Core\Exception\ConfiguratorException;
 
 /**
  * Load config files, provides container injection and modifies config data on bootloading.
  */
-class ConfigFactory implements ConfiguratorInterface, ModifierInterface, SingletonInterface
+class ConfigFactory implements ConfiguratorInterface, SingletonInterface
 {
     /** @var LoaderInterface */
     private $loader;
@@ -26,6 +26,9 @@ class ConfigFactory implements ConfiguratorInterface, ModifierInterface, Singlet
 
     /** @var array */
     private $data = [];
+
+    /** @var array */
+    private $defaults = [];
 
     /** @var array */
     private $instances = [];
@@ -43,11 +46,35 @@ class ConfigFactory implements ConfiguratorInterface, ModifierInterface, Singlet
     /**
      * @inheritdoc
      */
+    public function exists(string $section): bool
+    {
+        return isset($this->defaults[$section]) || isset($this->data[$section]) || $this->loader->has($section);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setDefault(string $section, array $data)
+    {
+        if (isset($this->defaults[$section])) {
+            throw new ConfiguratorException("Unable to set default config `{$section}` more than once.");
+        }
+
+        if (isset($this->data[$section])) {
+            throw new ConfigDeliveredException("Unable to set default config `{$section}`, config has been loaded.");
+        }
+
+        $this->defaults[$section] = $data;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function modify(string $section, PatchInterface $patch): array
     {
         if (isset($this->instances[$section])) {
             if ($this->strict) {
-                throw new PatchDeliveredException(
+                throw new ConfigDeliveredException(
                     "Unable to patch config `{$section}`, config object has already been delivered."
                 );
             }
@@ -73,7 +100,18 @@ class ConfigFactory implements ConfiguratorInterface, ModifierInterface, Singlet
             return $this->data[$section];
         }
 
-        return $this->data[$section] = $this->loader->loadData($section);
+        if (isset($this->defaults[$section])) {
+            $data = [];
+            if ($this->loader->has($section)) {
+                $data = $this->loader->load($section);
+            }
+
+            $data = array_merge($this->defaults[$section], $data);
+        } else {
+            $data = $this->loader->load($section);
+        }
+
+        return $this->data[$section] = $data;
     }
 
     /**
