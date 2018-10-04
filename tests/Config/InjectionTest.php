@@ -9,7 +9,7 @@
 namespace Spiral\Config\Tests;
 
 use Spiral\Config\Patch\AppendPatch;
-use Spiral\Core\ConfiguratorInterface;
+use Spiral\Core\ConfigsInterface;
 use Spiral\Core\InjectableConfig;
 
 class InjectionTest extends BaseTest
@@ -17,7 +17,7 @@ class InjectionTest extends BaseTest
     public function testInjection()
     {
         $cf = $this->getFactory();
-        $this->container->bind(ConfiguratorInterface::class, $cf);
+        $this->container->bind(ConfigsInterface::class, $cf);
 
         $config = $this->container->get(TestConfig::class);
 
@@ -38,7 +38,7 @@ class InjectionTest extends BaseTest
     public function testModifyAfterInjection()
     {
         $cf = $this->getFactory();
-        $this->container->bind(ConfiguratorInterface::class, $cf);
+        $this->container->bind(ConfigsInterface::class, $cf);
 
         $config = $this->container->get(TestConfig::class);
 
@@ -56,7 +56,7 @@ class InjectionTest extends BaseTest
     public function testNonStrict()
     {
         $cf = $this->getFactory(null, false);
-        $this->container->bind(ConfiguratorInterface::class, $cf);
+        $this->container->bind(ConfigsInterface::class, $cf);
 
         $config = $this->container->get(TestConfig::class);
 
