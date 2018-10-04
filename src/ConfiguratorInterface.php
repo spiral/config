@@ -8,10 +8,12 @@
 
 namespace Spiral\Config;
 
+use Spiral\Core\ConfigsInterface;
+
 /**
  * Provides ability to modify configs values in runtime.
  */
-interface ConfiguratorInterface extends \Spiral\Core\ConfiguratorInterface
+interface ConfiguratorInterface extends ConfigsInterface
 {
     /**
      * Check if configuration sections exists or defined as default.
