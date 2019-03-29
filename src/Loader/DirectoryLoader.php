@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Spiral Framework.
  *
@@ -8,7 +8,6 @@
 
 namespace Spiral\Config\Loader;
 
-use Spiral\Config\Exception\InvalidArgumentException;
 use Spiral\Config\Exception\LoaderException;
 use Spiral\Config\LoaderInterface;
 use Spiral\Core\FactoryInterface;
@@ -35,10 +34,6 @@ class DirectoryLoader implements LoaderInterface
      */
     public function __construct(string $directory, FactoryInterface $factory)
     {
-        if (!is_dir($directory)) {
-            throw new InvalidArgumentException("Invalid config directory `{$directory}`.");
-        }
-
         $this->directory = rtrim($directory, '/');
         $this->factory = $factory;
     }
