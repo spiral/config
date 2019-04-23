@@ -8,7 +8,7 @@
 
 namespace Spiral\Config\Tests;
 
-use Spiral\Config\Patch\AppendPatch;
+use Spiral\Config\Patch\Append;
 
 class AppendTest extends BaseTest
 {
@@ -18,14 +18,14 @@ class AppendTest extends BaseTest
 
         $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new AppendPatch('.', 'other', ['a' => 'b']));
+        $cf->modify('scope', new Append('.', 'other', ['a' => 'b']));
 
         $this->assertSame([
             'value' => 'value!',
             'other' => ['a' => 'b']
         ], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new AppendPatch('other.', null, 'c'));
+        $cf->modify('scope', new Append('other.', null, 'c'));
 
         $this->assertSame([
             'value' => 'value!',
@@ -45,6 +45,6 @@ class AppendTest extends BaseTest
         $config = $cf->getConfig('scope');
         $this->assertEquals(['value' => 'value!'], $config);
 
-        $cf->modify('scope', new AppendPatch('other', 'other', ['a' => 'b']));
+        $cf->modify('scope', new Append('other', 'other', ['a' => 'b']));
     }
 }

@@ -10,7 +10,7 @@ namespace Spiral\Config\Tests;
 
 
 use PHPUnit\Framework\TestCase;
-use Spiral\Config\ConfigFactory;
+use Spiral\Config\ConfigManager;
 use Spiral\Config\Loader\DirectoryLoader;
 use Spiral\Core\Container;
 
@@ -26,12 +26,12 @@ abstract class BaseTest extends TestCase
         $this->container = new Container();
     }
 
-    protected function getFactory(string $directory = null, bool $strict = true): ConfigFactory
+    protected function getFactory(string $directory = null, bool $strict = true): ConfigManager
     {
         if (is_null($directory)) {
             $directory = __DIR__ . '/fixtures';
         }
 
-        return new ConfigFactory(new DirectoryLoader($directory, $this->container), $strict);
+        return new ConfigManager(new DirectoryLoader($directory, $this->container), $strict);
     }
 }

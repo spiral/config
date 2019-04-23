@@ -9,8 +9,8 @@
 namespace Spiral\Config\Tests;
 
 
-use Spiral\Config\Patch\AppendPatch;
-use Spiral\Config\Patch\DeletePatch;
+use Spiral\Config\Patch\Append;
+use Spiral\Config\Patch\Delete;
 
 class DeleteTest extends BaseTest
 {
@@ -20,37 +20,37 @@ class DeleteTest extends BaseTest
 
         $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new AppendPatch('.', 'other', ['a' => 'b']));
-        $cf->modify('scope', new DeletePatch('.', 'value'));
+        $cf->modify('scope', new Append('.', 'other', ['a' => 'b']));
+        $cf->modify('scope', new Delete('.', 'value'));
 
         $this->assertSame([
             'other' => ['a' => 'b']
         ], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new AppendPatch('.', null, 'c'));
+        $cf->modify('scope', new Append('.', null, 'c'));
 
         $this->assertSame([
             'other' => ['a' => 'b'],
             'c'
         ], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new DeletePatch('.', null, 'c'));
+        $cf->modify('scope', new Delete('.', null, 'c'));
 
         $this->assertSame([
             'other' => ['a' => 'b']
         ], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new DeletePatch('other', 'a'));
+        $cf->modify('scope', new Delete('other', 'a'));
         $this->assertSame([
             'other' => []
         ], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new AppendPatch('.', 'other', ['a' => 'b']));
+        $cf->modify('scope', new Append('.', 'other', ['a' => 'b']));
         $this->assertSame([
             'other' => ['a' => 'b']
         ], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new DeletePatch('other', null, 'b'));
+        $cf->modify('scope', new Delete('other', null, 'b'));
         $this->assertSame([
             'other' => []
         ], $cf->getConfig('scope'));
@@ -61,7 +61,7 @@ class DeleteTest extends BaseTest
         $cf = $this->getFactory();
         $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new DeletePatch('something.', 'other'));
+        $cf->modify('scope', new Delete('something.', 'other'));
         $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
     }
 }

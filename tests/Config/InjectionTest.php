@@ -8,7 +8,7 @@
 
 namespace Spiral\Config\Tests;
 
-use Spiral\Config\Patch\AppendPatch;
+use Spiral\Config\Patch\Append;
 use Spiral\Core\ConfigsInterface;
 use Spiral\Core\InjectableConfig;
 
@@ -50,7 +50,7 @@ class InjectionTest extends BaseTest
             $config->toArray()
         );
 
-        $cf->modify('test', new AppendPatch(".", null, "value"));
+        $cf->modify('test', new Append(".", null, "value"));
     }
 
     public function testNonStrict()
@@ -68,7 +68,7 @@ class InjectionTest extends BaseTest
             $config->toArray()
         );
 
-        $cf->modify('test', new AppendPatch(".", 'key', "value"));
+        $cf->modify('test', new Append(".", 'key', "value"));
 
         $config = $this->container->get(TestConfig::class);
 

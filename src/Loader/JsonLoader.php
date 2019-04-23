@@ -1,16 +1,17 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+declare(strict_types=1);
 
 namespace Spiral\Config\Loader;
 
 use Spiral\Config\Exception\LoaderException;
 
-class JsonLoader implements FileLoaderInterface
+final class JsonLoader implements FileLoaderInterface
 {
     /**
      * @inheritdoc

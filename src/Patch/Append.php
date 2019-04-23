@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+declare(strict_types=1);
 
 namespace Spiral\Config\Patch;
 
@@ -13,7 +14,7 @@ use Spiral\Config\Exception\PatchException;
 use Spiral\Config\Patch\Traits\DotTrait;
 use Spiral\Config\PatchInterface;
 
-class AppendPatch implements PatchInterface
+final class Append implements PatchInterface
 {
     use DotTrait;
 

@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+declare(strict_types=1);
 
 namespace Spiral\Config\Loader;
 
@@ -12,7 +13,7 @@ use Spiral\Config\Exception\LoaderException;
 use Spiral\Config\LoaderInterface;
 use Spiral\Core\FactoryInterface;
 
-class DirectoryLoader implements LoaderInterface
+final class DirectoryLoader implements LoaderInterface
 {
     const LOADERS = [
         'php'  => PhpLoader::class,

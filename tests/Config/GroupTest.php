@@ -8,10 +8,10 @@
 
 namespace Spiral\Config\Tests;
 
-use Spiral\Config\Patch\AppendPatch;
-use Spiral\Config\Patch\DeletePatch;
-use Spiral\Config\Patch\GroupPatch;
-use Spiral\Config\Patch\PrependPatch;
+use Spiral\Config\Patch\Append;
+use Spiral\Config\Patch\Delete;
+use Spiral\Config\Patch\Group;
+use Spiral\Config\Patch\Prepend;
 
 class GroupTest extends BaseTest
 {
@@ -20,10 +20,10 @@ class GroupTest extends BaseTest
         $cf = $this->getFactory();
         $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new GroupPatch(
-            new PrependPatch('.', 'other', ['a' => 'b']),
-            new DeletePatch('other', 'a'),
-            new AppendPatch('other', 'c', 'd')
+        $cf->modify('scope', new Group(
+            new Prepend('.', 'other', ['a' => 'b']),
+            new Delete('other', 'a'),
+            new Append('other', 'c', 'd')
         ));
 
         $this->assertEquals([

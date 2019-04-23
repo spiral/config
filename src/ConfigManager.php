@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+declare(strict_types=1);
 
 namespace Spiral\Config;
 
@@ -16,7 +17,7 @@ use Spiral\Core\Exception\ConfiguratorException;
 /**
  * Load config files, provides container injection and modifies config data on bootloading.
  */
-class ConfigFactory implements ConfiguratorInterface, SingletonInterface
+final class ConfigManager implements ConfiguratorInterface, SingletonInterface
 {
     /** @var LoaderInterface */
     private $loader;

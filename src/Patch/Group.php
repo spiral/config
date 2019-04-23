@@ -1,16 +1,17 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+declare(strict_types=1);
 
 namespace Spiral\Config\Patch;
 
 use Spiral\Config\PatchInterface;
 
-class GroupPatch implements PatchInterface
+final class Group implements PatchInterface
 {
     /** @var array|PatchInterface[] */
     private $patches = [];

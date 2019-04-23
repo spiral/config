@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+declare(strict_types=1);
 
 namespace Spiral\Config\Patch;
 
@@ -12,7 +13,7 @@ use Spiral\Config\Exception\DotNotFoundException;
 use Spiral\Config\Patch\Traits\DotTrait;
 use Spiral\Config\PatchInterface;
 
-class DeletePatch implements PatchInterface
+final class Delete implements PatchInterface
 {
     use DotTrait;
 

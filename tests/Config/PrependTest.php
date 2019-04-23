@@ -8,7 +8,7 @@
 
 namespace Spiral\Config\Tests;
 
-use Spiral\Config\Patch\PrependPatch;
+use Spiral\Config\Patch\Prepend;
 
 class PrependTest extends BaseTest
 {
@@ -18,14 +18,14 @@ class PrependTest extends BaseTest
 
         $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new PrependPatch('.', 'other', ['a' => 'b']));
+        $cf->modify('scope', new Prepend('.', 'other', ['a' => 'b']));
 
         $this->assertSame([
             'other' => ['a' => 'b'],
             'value' => 'value!',
         ], $cf->getConfig('scope'));
 
-        $cf->modify('scope', new PrependPatch('other.', null, 'c'));
+        $cf->modify('scope', new Prepend('other.', null, 'c'));
 
         $this->assertSame([
             'other' => [
@@ -45,6 +45,6 @@ class PrependTest extends BaseTest
         $config = $cf->getConfig('scope');
         $this->assertEquals(['value' => 'value!'], $config);
 
-        $cf->modify('scope', new PrependPatch('other', 'other', ['a' => 'b']));
+        $cf->modify('scope', new Prepend('other', 'other', ['a' => 'b']));
     }
 }

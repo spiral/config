@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+declare(strict_types=1);
 
 namespace Spiral\Config\Loader;
 
@@ -15,7 +16,7 @@ use Spiral\Core\ContainerScope;
 /**
  * Loads PHP files inside container scope.
  */
-class PhpLoader implements FileLoaderInterface
+final class PhpLoader implements FileLoaderInterface
 {
     /** @var ContainerInterface */
     private $container;
