@@ -1,10 +1,13 @@
 <?php
+
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+
+declare(strict_types=1);
 
 namespace Spiral\Config\Tests;
 
@@ -14,7 +17,7 @@ use Spiral\Core\InjectableConfig;
 
 class InjectionTest extends BaseTest
 {
-    public function testInjection()
+    public function testInjection(): void
     {
         $cf = $this->getFactory();
         $this->container->bind(ConfigsInterface::class, $cf);
@@ -35,7 +38,7 @@ class InjectionTest extends BaseTest
     /**
      * @expectedException \Spiral\Config\Exception\ConfigDeliveredException
      */
-    public function testModifyAfterInjection()
+    public function testModifyAfterInjection(): void
     {
         $cf = $this->getFactory();
         $this->container->bind(ConfigsInterface::class, $cf);
@@ -50,10 +53,10 @@ class InjectionTest extends BaseTest
             $config->toArray()
         );
 
-        $cf->modify('test', new Append(".", null, "value"));
+        $cf->modify('test', new Append('.', null, 'value'));
     }
 
-    public function testNonStrict()
+    public function testNonStrict(): void
     {
         $cf = $this->getFactory(null, false);
         $this->container->bind(ConfigsInterface::class, $cf);
@@ -68,7 +71,7 @@ class InjectionTest extends BaseTest
             $config->toArray()
         );
 
-        $cf->modify('test', new Append(".", 'key', "value"));
+        $cf->modify('test', new Append('.', 'key', 'value'));
 
         $config = $this->container->get(TestConfig::class);
 
@@ -81,9 +84,4 @@ class InjectionTest extends BaseTest
             $config->toArray()
         );
     }
-}
-
-class TestConfig extends InjectableConfig
-{
-    const CONFIG = "test";
 }

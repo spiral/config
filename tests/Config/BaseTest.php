@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Spiral Framework.
  *
@@ -6,8 +7,9 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Tests;
+declare(strict_types=1);
 
+namespace Spiral\Config\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Spiral\Config\ConfigManager;
@@ -21,7 +23,7 @@ abstract class BaseTest extends TestCase
      */
     protected $container;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->container = new Container();
     }

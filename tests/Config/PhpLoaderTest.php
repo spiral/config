@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Spiral Framework.
  *
@@ -6,11 +7,13 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
+declare(strict_types=1);
+
 namespace Spiral\Config\Tests;
 
 class PhpLoaderTest extends BaseTest
 {
-    public function testGetConfig()
+    public function testGetConfig(): void
     {
         $cf = $this->getFactory();
 
@@ -26,7 +29,7 @@ class PhpLoaderTest extends BaseTest
     /**
      * @expectedException \Spiral\Config\Exception\LoaderException
      */
-    public function testEmpty()
+    public function testEmpty(): void
     {
         $cf = $this->getFactory();
         $cf->getConfig('empty');
@@ -35,19 +38,19 @@ class PhpLoaderTest extends BaseTest
     /**
      * @expectedException \Spiral\Config\Exception\LoaderException
      */
-    public function testBroken()
+    public function testBroken(): void
     {
         $cf = $this->getFactory();
         $cf->getConfig('broken');
     }
 
-    public function testScope()
+    public function testScope(): void
     {
         $cf = $this->getFactory();
         $config = $cf->getConfig('scope');
         $this->assertEquals(['value' => 'value!'], $config);
 
-        $this->container->bind(Value::class, new Value("other!"));
+        $this->container->bind(Value::class, new Value('other!'));
 
         $config = $cf->getConfig('scope2');
         $this->assertEquals(['value' => 'other!'], $config);
@@ -56,20 +59,5 @@ class PhpLoaderTest extends BaseTest
 
         $config = $cf->getConfig('scope');
         $this->assertEquals(['value' => 'other!'], $config);
-    }
-}
-
-class Value
-{
-    private $value;
-
-    public function __construct(string $value = "value!")
-    {
-        $this->value = $value;
-    }
-
-    public function getValue()
-    {
-        return $this->value;
     }
 }

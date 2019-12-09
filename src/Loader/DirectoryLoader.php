@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+
 declare(strict_types=1);
 
 namespace Spiral\Config\Loader;
@@ -15,7 +17,7 @@ use Spiral\Core\FactoryInterface;
 
 final class DirectoryLoader implements LoaderInterface
 {
-    const LOADERS = [
+    public const LOADERS = [
         'php'  => PhpLoader::class,
         'json' => JsonLoader::class,
     ];
@@ -45,7 +47,7 @@ final class DirectoryLoader implements LoaderInterface
     public function has(string $section): bool
     {
         foreach (static::LOADERS as $extension => $class) {
-            $filename = sprintf("%s/%s.%s", $this->directory, $section, $extension);
+            $filename = sprintf('%s/%s.%s', $this->directory, $section, $extension);
             if (file_exists($filename)) {
                 return true;
             }
@@ -60,7 +62,7 @@ final class DirectoryLoader implements LoaderInterface
     public function load(string $section): array
     {
         foreach (static::LOADERS as $extension => $class) {
-            $filename = sprintf("%s/%s.%s", $this->directory, $section, $extension);
+            $filename = sprintf('%s/%s.%s', $this->directory, $section, $extension);
             if (!file_exists($filename)) {
                 continue;
             }

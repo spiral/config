@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Spiral Framework.
  *
@@ -6,13 +7,15 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
+declare(strict_types=1);
+
 namespace Spiral\Config\Tests;
 
 use Spiral\Config\Patch\Prepend;
 
 class PrependTest extends BaseTest
 {
-    public function testPatch()
+    public function testPatch(): void
     {
         $cf = $this->getFactory();
 
@@ -39,7 +42,7 @@ class PrependTest extends BaseTest
     /**
      * @expectedException \Spiral\Config\Exception\PatchException
      */
-    public function testException()
+    public function testException(): void
     {
         $cf = $this->getFactory();
         $config = $cf->getConfig('scope');

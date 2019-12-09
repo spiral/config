@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Spiral Framework.
  *
@@ -6,11 +7,13 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
+declare(strict_types=1);
+
 namespace Spiral\Config\Tests;
 
 class JsonLoaderTest extends BaseTest
 {
-    public function testGetConfig()
+    public function testGetConfig(): void
     {
         $cf = $this->getFactory();
 
@@ -20,7 +23,7 @@ class JsonLoaderTest extends BaseTest
     /**
      * @expectedException \Spiral\Config\Exception\LoaderException
      */
-    public function testEmpty()
+    public function testEmpty(): void
     {
         $cf = $this->getFactory();
         $cf->getConfig('empty-json');
@@ -29,7 +32,7 @@ class JsonLoaderTest extends BaseTest
     /**
      * @expectedException \Spiral\Config\Exception\LoaderException
      */
-    public function testBroken()
+    public function testBroken(): void
     {
         $cf = $this->getFactory();
         $cf->getConfig('broken-json');

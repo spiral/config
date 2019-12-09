@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Spiral Framework.
  *
@@ -6,11 +7,13 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
+declare(strict_types=1);
+
 namespace Spiral\Config\Tests;
 
 class ConfigFactoryTest extends BaseTest
 {
-    public function testGetConfig()
+    public function testGetConfig(): void
     {
         $cf = $this->getFactory();
         $config = $cf->getConfig('test');
@@ -26,7 +29,7 @@ class ConfigFactoryTest extends BaseTest
         $this->assertSame($config, $cf->getConfig('test'));
     }
 
-    public function testExists()
+    public function testExists(): void
     {
         $cf = $this->getFactory();
         $this->assertTrue($cf->exists('test'));
@@ -40,7 +43,7 @@ class ConfigFactoryTest extends BaseTest
     /**
      * @expectedException \Spiral\Config\Exception\LoaderException
      */
-    public function testConfigError()
+    public function testConfigError(): void
     {
         $cf = $this->getFactory();
         $cf->getConfig('other');

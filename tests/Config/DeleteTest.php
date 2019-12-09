@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Spiral Framework.
  *
@@ -6,15 +7,16 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
-namespace Spiral\Config\Tests;
+declare(strict_types=1);
 
+namespace Spiral\Config\Tests;
 
 use Spiral\Config\Patch\Append;
 use Spiral\Config\Patch\Delete;
 
 class DeleteTest extends BaseTest
 {
-    public function testPatch()
+    public function testPatch(): void
     {
         $cf = $this->getFactory();
 
@@ -56,7 +58,7 @@ class DeleteTest extends BaseTest
         ], $cf->getConfig('scope'));
     }
 
-    public function testException()
+    public function testException(): void
     {
         $cf = $this->getFactory();
         $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));

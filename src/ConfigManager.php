@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Spiral Framework.
  *
  * @license   MIT
  * @author    Anton Titov (Wolfy-J)
  */
+
 declare(strict_types=1);
 
 namespace Spiral\Config;
@@ -45,6 +47,16 @@ final class ConfigManager implements ConfiguratorInterface, SingletonInterface
     }
 
     /**
+     * Clone state will reset both data and instance cache.
+     */
+    public function __clone()
+    {
+        $this->data = [];
+        $this->defaults = [];
+        $this->instances = [];
+    }
+
+    /**
      * @inheritdoc
      */
     public function exists(string $section): bool
@@ -55,7 +67,7 @@ final class ConfigManager implements ConfiguratorInterface, SingletonInterface
     /**
      * @inheritdoc
      */
-    public function setDefaults(string $section, array $data)
+    public function setDefaults(string $section, array $data): void
     {
         if (isset($this->defaults[$section])) {
             throw new ConfiguratorException("Unable to set default config `{$section}` more than once.");
@@ -126,15 +138,5 @@ final class ConfigManager implements ConfiguratorInterface, SingletonInterface
         }
 
         return $this->instances[$config] = $class->newInstance($this->getConfig($config));
-    }
-
-    /**
-     * Clone state will reset both data and instance cache.
-     */
-    public function __clone()
-    {
-        $this->data = [];
-        $this->defaults = [];
-        $this->instances = [];
     }
 }

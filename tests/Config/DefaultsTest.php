@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Spiral Framework.
  *
@@ -6,14 +7,16 @@
  * @author    Anton Titov (Wolfy-J)
  */
 
+declare(strict_types=1);
+
 namespace Spiral\Config\Tests;
 
 class DefaultsTest extends BaseTest
 {
-    public function testGetNonExistedByDefaultConfig()
+    public function testGetNonExistedByDefaultConfig(): void
     {
         $cf = $this->getFactory();
-        $cf->setDefaults("magic", ['key' => 'value']);
+        $cf->setDefaults('magic', ['key' => 'value']);
 
         $config = $cf->getConfig('magic');
 
@@ -28,30 +31,29 @@ class DefaultsTest extends BaseTest
     /**
      * @expectedException \Spiral\Core\Exception\ConfiguratorException
      */
-    public function testDefaultsTwice()
+    public function testDefaultsTwice(): void
     {
         $cf = $this->getFactory();
-        $cf->setDefaults("magic", ['key' => 'value']);
-        $cf->setDefaults("magic", ['key' => 'value']);
-
+        $cf->setDefaults('magic', ['key' => 'value']);
+        $cf->setDefaults('magic', ['key' => 'value']);
     }
 
     /**
      * @expectedException \Spiral\Core\Exception\ConfiguratorException
      */
-    public function testDefaultToAlreadyLoaded()
+    public function testDefaultToAlreadyLoaded(): void
     {
         $cf = $this->getFactory();
 
         $cf->getConfig('test');
-        $cf->setDefaults("test", ['key' => 'value']);
+        $cf->setDefaults('test', ['key' => 'value']);
     }
 
-    public function testOverwrite()
+    public function testOverwrite(): void
     {
         $cf = $this->getFactory();
 
-        $cf->setDefaults("test", [
+        $cf->setDefaults('test', [
             'key' => 'value'
         ]);
 

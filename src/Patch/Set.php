@@ -16,44 +16,38 @@ use Spiral\Config\Exception\PatchException;
 use Spiral\Config\Patch\Traits\DotTrait;
 use Spiral\Config\PatchInterface;
 
-final class Append implements PatchInterface
+/**
+ * Set the value.
+ */
+final class Set implements PatchInterface
 {
     use DotTrait;
 
     /** @var string */
-    private $position;
-
-    /** @var null|string */
     private $key;
 
     /** @var mixed */
     private $value;
 
     /**
-     * @param string      $position
-     * @param null|string $key
-     * @param mixed       $value
+     * @param string $key
+     * @param mixed  $value
      */
-    public function __construct(string $position, ?string $key, $value)
+    public function __construct(string $key, $value)
     {
-        $this->position = $position === '.' ? '' : $position;
         $this->key = $key;
         $this->value = $value;
     }
 
     /**
-     * @inheritdoc
+     * @param array $config
+     * @return array
      */
     public function patch(array $config): array
     {
         try {
-            $target = &$this->dotGet($config, $this->position);
-
-            if ($this->key !== null) {
-                $target[$this->key] = $this->value;
-            } else {
-                $target[] = $this->value;
-            }
+            $target = &$this->dotGet($config, $this->key);
+            $target = $this->value;
         } catch (DotNotFoundException $e) {
             throw new PatchException($e->getMessage(), $e->getCode(), $e);
         }
