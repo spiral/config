@@ -1,12 +1,12 @@
 {
-    "name": "spiral/framework",
+    "name": "spiral/config",
     "type": "library",
-    "description": "Spiral, High-Performance PHP/Go Framework",
-    "homepage": "https://spiral.dev",
+    "description": "Config injector and configuration mutator",
     "license": "MIT",
+    "homepage": "https://spiral.dev",
     "support": {
         "issues": "https://github.com/spiral/framework/issues",
-        "source": "https://github.com/spiral/framework"
+        "source": "https://github.com/spiral/config"
     },
     "authors": [
         {
@@ -14,84 +14,28 @@
             "email": "wolfy.jd@gmail.com"
         }
     ],
-    "bin": [
-        "bin/spiral"
-    ],
     "require": {
         "php": "^7.2",
         "ext-json": "*",
-        "ext-mbstring": "*",
-        "psr/container": "^1.0",
-        "spiral/boot": "^1.1",
-        "spiral/composer-publish-plugin": "^1.0",
-        "spiral/tokenizer": "^2.0"
-    },
-    "autoload": {
-        "files": [
-            "src/Framework/helpers.php"
-        ],
-        "psr-4": {
-            "Spiral\\": "src/Framework",
-            "Spiral\\Core\\": "src/Core/src"
-        }
+        "spiral/core": "^2.6"
     },
     "require-dev": {
-        "cycle/annotated": "^2.0",
-        "cycle/migrations": "^1.0",
-        "cycle/orm": "^1.0",
-        "cycle/proxy-factory": "^1.0",
-        "mockery/mockery": "^1.1",
         "phpunit/phpunit": "^8.5|^9.0",
-        "roave/security-advisories": "dev-master",
-        "spiral/auth": "^1.0",
-        "spiral/auth-http": "^1.1",
-        "spiral/broadcast": "^2.0",
-        "spiral/broadcast-ws": "^1.0",
-        "spiral/code-style": "^1.0",
-        "spiral/console": "^1.0",
-        "spiral/cookies": "^1.2",
-        "spiral/csrf": "^1.1",
-        "spiral/database": "^2.4",
-        "spiral/debug": "^1.1",
-        "spiral/encrypter": "^1.0",
-        "spiral/filters": "^1.0",
-        "spiral/http": "^1.0",
-        "spiral/jobs": "^2.0",
-        "spiral/logger": "^1.0",
-        "spiral/migrations": "^2.0",
-        "spiral/models": "^2.0",
-        "spiral/php-grpc": "^1.0",
-        "spiral/roadrunner": "^1.2",
-        "spiral/router": "^1.0",
-        "spiral/security": "^2.0",
-        "spiral/session": "^1.2.2",
-        "spiral/snapshots": "^1.0",
-        "spiral/translator": "^1.2",
-        "spiral/validation": "^1.4.4",
-        "spiral/views": "^1.0",
-        "symplify/monorepo-builder": "^7.0"
+        "mockery/mockery": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spiral\\Config\\": "src"
+        }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spiral\\App\\": "tests/app/src",
-            "Spiral\\Tests\\Core\\": "src/Core/tests",
-            "Spiral\\Tests\\Framework\\": "tests/Framework"
+            "Spiral\\Tests\\Config\\": "tests"
         }
-    },
-    "replace": {
-        "spiral/core": "*"
-    },
-    "scripts": {
-        "cs": "spiral-cs check src tests",
-        "merge": [
-            "monorepo-builder merge",
-            "@php bin/sync"
-        ],
-        "split": "monorepo-builder split"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.6-dev"
+            "dev-master": "2.6.x-dev"
         }
     },
     "config": {
