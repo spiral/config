@@ -18,12 +18,15 @@ class InjectionTest extends BaseTestCase
 
         $config = $this->container->get(TestConfig::class);
 
-        self::assertEquals([
-            'id'       => 'hello world',
-            'autowire' => new Autowire('something'),
-        ], $config->toArray());
+        $this->assertEquals(
+            [
+                'id'       => 'hello world',
+                'autowire' => new Autowire('something'),
+            ],
+            $config->toArray()
+        );
 
-        self::assertSame($config, $this->container->get(TestConfig::class));
+        $this->assertSame($config, $this->container->get(TestConfig::class));
     }
 
     public function testModifyAfterInjection(): void
@@ -35,10 +38,13 @@ class InjectionTest extends BaseTestCase
 
         $config = $this->container->get(TestConfig::class);
 
-        self::assertEquals([
-            'id'       => 'hello world',
-            'autowire' => new Autowire('something'),
-        ], $config->toArray());
+        $this->assertEquals(
+            [
+                'id'       => 'hello world',
+                'autowire' => new Autowire('something'),
+            ],
+            $config->toArray()
+        );
 
         $cf->modify('test', new Append('.', null, 'value'));
     }
@@ -50,19 +56,25 @@ class InjectionTest extends BaseTestCase
 
         $config = $this->container->get(TestConfig::class);
 
-        self::assertEquals([
-            'id'       => 'hello world',
-            'autowire' => new Autowire('something'),
-        ], $config->toArray());
+        $this->assertEquals(
+            [
+                'id'       => 'hello world',
+                'autowire' => new Autowire('something'),
+            ],
+            $config->toArray()
+        );
 
         $cf->modify('test', new Append('.', 'key', 'value'));
 
         $config = $this->container->get(TestConfig::class);
 
-        self::assertEquals([
-            'id'       => 'hello world',
-            'autowire' => new Autowire('something'),
-            'key'      => 'value',
-        ], $config->toArray());
+        $this->assertEquals(
+            [
+                'id'       => 'hello world',
+                'autowire' => new Autowire('something'),
+                'key'      => 'value',
+            ],
+            $config->toArray()
+        );
     }
 }
