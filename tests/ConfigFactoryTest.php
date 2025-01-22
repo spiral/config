@@ -14,23 +14,26 @@ class ConfigFactoryTest extends BaseTestCase
         $cf = $this->getFactory();
         $config = $cf->getConfig('test');
 
-        self::assertEquals([
-            'id'       => 'hello world',
-            'autowire' => new Autowire('something'),
-        ], $config);
+        $this->assertEquals(
+            [
+                'id'       => 'hello world',
+                'autowire' => new Autowire('something'),
+            ],
+            $config
+        );
 
-        self::assertSame($config, $cf->getConfig('test'));
+        $this->assertSame($config, $cf->getConfig('test'));
     }
 
     public function testExists(): void
     {
         $cf = $this->getFactory();
-        self::assertTrue($cf->exists('test'));
-        self::assertFalse($cf->exists('magic'));
+        $this->assertTrue($cf->exists('test'));
+        $this->assertFalse($cf->exists('magic'));
 
         $cf->setDefaults('magic', ['key' => 'value']);
 
-        self::assertTrue($cf->exists('magic'));
+        $this->assertTrue($cf->exists('magic'));
     }
 
     public function testConfigError(): void
