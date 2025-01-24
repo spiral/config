@@ -18,7 +18,7 @@ abstract class BaseTestCase extends TestCase
      */
     protected $container;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->container = new Container();
     }
@@ -34,7 +34,7 @@ abstract class BaseTestCase extends TestCase
                 'php'  => $this->container->get(PhpLoader::class),
                 'json' => $this->container->get(JsonLoader::class),
             ]),
-            $strict
+            $strict,
         );
     }
 }

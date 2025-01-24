@@ -13,50 +13,50 @@ class DeleteTest extends BaseTestCase
     {
         $cf = $this->getFactory();
 
-        $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
+        self::assertSame(['value' => 'value!'], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Append('.', 'other', ['a' => 'b']));
         $cf->modify('scope', new Delete('.', 'value'));
 
-        $this->assertSame([
-            'other' => ['a' => 'b']
+        self::assertSame([
+            'other' => ['a' => 'b'],
         ], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Append('.', null, 'c'));
 
-        $this->assertSame([
+        self::assertSame([
             'other' => ['a' => 'b'],
-            'c'
+            'c',
         ], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Delete('.', null, 'c'));
 
-        $this->assertSame([
-            'other' => ['a' => 'b']
+        self::assertSame([
+            'other' => ['a' => 'b'],
         ], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Delete('other', 'a'));
-        $this->assertSame([
-            'other' => []
+        self::assertSame([
+            'other' => [],
         ], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Append('.', 'other', ['a' => 'b']));
-        $this->assertSame([
-            'other' => ['a' => 'b']
+        self::assertSame([
+            'other' => ['a' => 'b'],
         ], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Delete('other', null, 'b'));
-        $this->assertSame([
-            'other' => []
+        self::assertSame([
+            'other' => [],
         ], $cf->getConfig('scope'));
     }
 
     public function testException(): void
     {
         $cf = $this->getFactory();
-        $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
+        self::assertSame(['value' => 'value!'], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Delete('something.', 'other'));
-        $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
+        self::assertSame(['value' => 'value!'], $cf->getConfig('scope'));
     }
 }
