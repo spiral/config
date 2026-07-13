@@ -6,23 +6,23 @@ namespace Spiral\Tests\Config;
 
 use Spiral\Config\Patch\Set;
 
-class SetTest extends BaseTestCase
+final class SetTest extends BaseTestCase
 {
     public function testPatch(): void
     {
         $cf = $this->getFactory();
 
-        $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
+        self::assertSame(['value' => 'value!'], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Set('value', 'x'));
 
-        $this->assertSame([
+        self::assertSame([
             'value' => 'x',
         ], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Set('value', 'y'));
 
-        $this->assertSame([
+        self::assertSame([
             'value' => 'y',
         ], $cf->getConfig('scope'));
     }

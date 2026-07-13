@@ -24,19 +24,8 @@ final class ConfigManager implements ConfiguratorInterface
 
     public function __construct(
         private readonly LoaderInterface $loader,
-        private readonly bool $strict = true
-    ) {
-    }
-
-    /**
-     * Clone state will reset both data and instance cache.
-     */
-    public function __clone()
-    {
-        $this->data = [];
-        $this->defaults = [];
-        $this->instances = [];
-    }
+        private readonly bool $strict = true,
+    ) {}
 
     public function exists(string $section): bool
     {
@@ -51,7 +40,7 @@ final class ConfigManager implements ConfiguratorInterface
 
         if (isset($this->data[$section])) {
             throw new ConfigDeliveredException(
-                \sprintf('Unable to set default config `%s`, config has been loaded.', $section)
+                \sprintf('Unable to set default config `%s`, config has been loaded.', $section),
             );
         }
 
@@ -63,7 +52,7 @@ final class ConfigManager implements ConfiguratorInterface
         if (isset($this->instances[$section])) {
             if ($this->strict) {
                 throw new ConfigDeliveredException(
-                    \sprintf('Unable to patch config `%s`, config object has already been delivered.', $section)
+                    \sprintf('Unable to patch config `%s`, config object has already been delivered.', $section),
                 );
             }
 
@@ -79,7 +68,7 @@ final class ConfigManager implements ConfiguratorInterface
         }
     }
 
-    public function getConfig(string $section = null): array
+    public function getConfig(?string $section = null): array
     {
         if (isset($this->data[$section])) {
             return $this->data[$section];
@@ -99,7 +88,7 @@ final class ConfigManager implements ConfiguratorInterface
         return $this->data[$section] = $data;
     }
 
-    public function createInjection(\ReflectionClass $class, string $context = null): object
+    public function createInjection(\ReflectionClass $class, ?string $context = null): object
     {
         $config = $class->getConstant('CONFIG');
         if (isset($this->instances[$config])) {
@@ -107,5 +96,15 @@ final class ConfigManager implements ConfiguratorInterface
         }
 
         return $this->instances[$config] = $class->newInstance($this->getConfig($config));
+    }
+
+    /**
+     * Clone state will reset both data and instance cache.
+     */
+    public function __clone()
+    {
+        $this->data = [];
+        $this->defaults = [];
+        $this->instances = [];
     }
 }

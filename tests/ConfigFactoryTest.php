@@ -7,33 +7,30 @@ namespace Spiral\Tests\Config;
 use Spiral\Config\Exception\LoaderException;
 use Spiral\Core\Container\Autowire;
 
-class ConfigFactoryTest extends BaseTestCase
+final class ConfigFactoryTest extends BaseTestCase
 {
     public function testGetConfig(): void
     {
         $cf = $this->getFactory();
         $config = $cf->getConfig('test');
 
-        $this->assertEquals(
-            [
-                'id'       => 'hello world',
-                'autowire' => new Autowire('something'),
-            ],
-            $config
-        );
+        self::assertEquals([
+            'id'       => 'hello world',
+            'autowire' => new Autowire('something'),
+        ], $config);
 
-        $this->assertSame($config, $cf->getConfig('test'));
+        self::assertSame($config, $cf->getConfig('test'));
     }
 
     public function testExists(): void
     {
         $cf = $this->getFactory();
-        $this->assertTrue($cf->exists('test'));
-        $this->assertFalse($cf->exists('magic'));
+        self::assertTrue($cf->exists('test'));
+        self::assertFalse($cf->exists('magic'));
 
         $cf->setDefaults('magic', ['key' => 'value']);
 
-        $this->assertTrue($cf->exists('magic'));
+        self::assertTrue($cf->exists('magic'));
     }
 
     public function testConfigError(): void

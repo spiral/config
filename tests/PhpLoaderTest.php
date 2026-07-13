@@ -7,19 +7,16 @@ namespace Spiral\Tests\Config;
 use Spiral\Config\Exception\LoaderException;
 use Spiral\Core\Container\Autowire;
 
-class PhpLoaderTest extends BaseTestCase
+final class PhpLoaderTest extends BaseTestCase
 {
     public function testGetConfig(): void
     {
         $cf = $this->getFactory();
 
-        $this->assertEquals(
-            [
-                'id'       => 'hello world',
-                'autowire' => new Autowire('something'),
-            ],
-            $cf->getConfig('test')
-        );
+        self::assertEquals([
+            'id'       => 'hello world',
+            'autowire' => new Autowire('something'),
+        ], $cf->getConfig('test'));
     }
 
     public function testEmpty(): void
@@ -42,16 +39,16 @@ class PhpLoaderTest extends BaseTestCase
     {
         $cf = $this->getFactory();
         $config = $cf->getConfig('scope');
-        $this->assertEquals(['value' => 'value!'], $config);
+        self::assertSame(['value' => 'value!'], $config);
 
         $this->container->bind(Value::class, new Value('other!'));
 
         $config = $cf->getConfig('scope2');
-        $this->assertEquals(['value' => 'other!'], $config);
+        self::assertSame(['value' => 'other!'], $config);
 
         $cf = clone $cf;
 
         $config = $cf->getConfig('scope');
-        $this->assertEquals(['value' => 'other!'], $config);
+        self::assertSame(['value' => 'other!'], $config);
     }
 }
