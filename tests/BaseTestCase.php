@@ -18,14 +18,14 @@ abstract class BaseTestCase extends TestCase
      */
     protected $container;
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         $this->container = new Container();
     }
 
-    protected function getFactory(?string $directory = null, bool $strict = true): ConfigManager
+    protected function getFactory(string $directory = null, bool $strict = true): ConfigManager
     {
-        if (\is_null($directory)) {
+        if (is_null($directory)) {
             $directory = __DIR__ . '/fixtures';
         }
 
@@ -34,7 +34,7 @@ abstract class BaseTestCase extends TestCase
                 'php'  => $this->container->get(PhpLoader::class),
                 'json' => $this->container->get(JsonLoader::class),
             ]),
-            $strict,
+            $strict
         );
     }
 }

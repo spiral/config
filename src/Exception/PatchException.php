@@ -6,4 +6,6 @@ namespace Spiral\Config\Exception;
 
 use Spiral\Core\Exception\ConfiguratorException;
 
-class PatchException extends ConfiguratorException {}
+class PatchException extends ConfiguratorException
+{
+}

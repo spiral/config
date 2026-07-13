@@ -7,7 +7,7 @@ namespace Spiral\Tests\Config;
 use Spiral\Core\Container\Autowire;
 use Spiral\Core\Exception\ConfiguratorException;
 
-final class DefaultsTest extends BaseTestCase
+class DefaultsTest extends BaseTestCase
 {
     public function testGetNonExistedByDefaultConfig(): void
     {
@@ -16,9 +16,12 @@ final class DefaultsTest extends BaseTestCase
 
         $config = $cf->getConfig('magic');
 
-        self::assertSame(['key' => 'value'], $config);
+        $this->assertEquals(
+            ['key' => 'value'],
+            $config
+        );
 
-        self::assertSame($config, $cf->getConfig('magic'));
+        $this->assertSame($config, $cf->getConfig('magic'));
     }
 
     public function testDefaultsTwice(): void
@@ -50,12 +53,15 @@ final class DefaultsTest extends BaseTestCase
 
         $config = $cf->getConfig('test');
 
-        self::assertEquals([
-            'key'      => 'value',
-            'id'       => 'hello world',
-            'autowire' => new Autowire('something'),
-        ], $config);
+        $this->assertEquals(
+            [
+                'key'      => 'value',
+                'id'       => 'hello world',
+                'autowire' => new Autowire('something'),
+            ],
+            $config
+        );
 
-        self::assertSame($config, $cf->getConfig('test'));
+        $this->assertSame($config, $cf->getConfig('test'));
     }
 }

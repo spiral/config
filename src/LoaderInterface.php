@@ -14,6 +14,7 @@ interface LoaderInterface
     public function has(string $section): bool;
 
     /**
+     *
      * @throws LoaderException
      */
     public function load(string $section): array;

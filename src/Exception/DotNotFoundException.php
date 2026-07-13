@@ -4,4 +4,6 @@ declare(strict_types=1);
 
 namespace Spiral\Config\Exception;
 
-class DotNotFoundException extends \RuntimeException {}
+class DotNotFoundException extends \RuntimeException
+{
+}

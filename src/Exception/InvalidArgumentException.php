@@ -6,4 +6,6 @@ namespace Spiral\Config\Exception;
 
 use Spiral\Core\Exception\ConfiguratorException;
 
-class InvalidArgumentException extends ConfiguratorException {}
+class InvalidArgumentException extends ConfiguratorException
+{
+}

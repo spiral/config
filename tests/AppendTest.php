@@ -7,24 +7,24 @@ namespace Spiral\Tests\Config;
 use Spiral\Config\Exception\PatchException;
 use Spiral\Config\Patch\Append;
 
-final class AppendTest extends BaseTestCase
+class AppendTest extends BaseTestCase
 {
     public function testPatch(): void
     {
         $cf = $this->getFactory();
 
-        self::assertSame(['value' => 'value!'], $cf->getConfig('scope'));
+        $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Append('.', 'other', ['a' => 'b']));
 
-        self::assertSame([
+        $this->assertSame([
             'value' => 'value!',
             'other' => ['a' => 'b'],
         ], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Append('other.', null, 'c'));
 
-        self::assertSame([
+        $this->assertSame([
             'value' => 'value!',
             'other' => [
                 'a' => 'b',
@@ -39,7 +39,7 @@ final class AppendTest extends BaseTestCase
 
         $cf = $this->getFactory();
         $config = $cf->getConfig('scope');
-        self::assertSame(['value' => 'value!'], $config);
+        $this->assertEquals(['value' => 'value!'], $config);
 
         $cf->modify('scope', new Append('other', 'other', ['a' => 'b']));
     }

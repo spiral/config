@@ -9,7 +9,7 @@ use Spiral\Config\PatchInterface;
 final class Group implements PatchInterface
 {
     /** @var PatchInterface[] */
-    private readonly array $patches;
+    private array $patches;
 
     public function __construct(PatchInterface ...$patch)
     {

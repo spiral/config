@@ -9,22 +9,22 @@ use Spiral\Config\Patch\Delete;
 use Spiral\Config\Patch\Group;
 use Spiral\Config\Patch\Prepend;
 
-final class GroupTest extends BaseTestCase
+class GroupTest extends BaseTestCase
 {
     public function testPatch(): void
     {
         $cf = $this->getFactory();
-        self::assertSame(['value' => 'value!'], $cf->getConfig('scope'));
+        $this->assertEquals(['value' => 'value!'], $cf->getConfig('scope'));
 
         $cf->modify('scope', new Group(
             new Prepend('.', 'other', ['a' => 'b']),
             new Delete('other', 'a'),
-            new Append('other', 'c', 'd'),
+            new Append('other', 'c', 'd')
         ));
 
-        self::assertSame([
+        $this->assertEquals([
             'other' => ['c' => 'd'],
-            'value' => 'value!',
+            'value' => 'value!'
         ], $cf->getConfig('scope'));
     }
 }
