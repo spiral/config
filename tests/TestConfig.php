@@ -6,7 +6,7 @@ namespace Spiral\Tests\Config;
 
 use Spiral\Core\InjectableConfig;
 
-final class TestConfig extends InjectableConfig
+class TestConfig extends InjectableConfig
 {
     public const CONFIG = 'test';
 }

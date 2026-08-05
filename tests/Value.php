@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Spiral\Tests\Config;
 
-final class Value
+class Value
 {
     public function __construct(private readonly string $value = 'value!') {}
 
